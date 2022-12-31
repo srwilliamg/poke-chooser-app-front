@@ -1,0 +1,32 @@
+:host {
+  display: grid;
+  grid-template-rows: 8% 75%;
+  background-color: #37A2E6;
+  border-radius: 10px;
+  height: 100%;
+  overflow: auto;
+}
+
+.favorite-title>span {
+  padding-top: 0.6em;
+}
+
+.favorite-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #FAD02C;
+  font-style: italic;
+  padding-left: 1em;
+}
+
+.pokemon-card-list {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0px;
+  margin: 0px;
+  flex-wrap: wrap;
+  height: fit-content;
+}
