@@ -1,7 +1,4 @@
 <div class="favorite-title">
   <span>MY POKEMONS</span>
 </div>
-<div class="pokemon-card-list">
-  <app-pokemon-card *ngFor="let pokemon of pokemons" [name]="pokemon.name"
-    [photoUrl]="pokemon.photoUrl"></app-pokemon-card>
-</div>
+<app-pokemon-card-list [pokemonsToShow]="(favoritePokemons$ | async)"></app-pokemon-card-list>

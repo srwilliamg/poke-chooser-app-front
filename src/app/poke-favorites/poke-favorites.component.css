@@ -21,12 +21,3 @@
   font-style: italic;
   padding-left: 1em;
 }
-
-.pokemon-card-list {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0px;
-  margin: 0px;
-  flex-wrap: wrap;
-  height: fit-content;
-}

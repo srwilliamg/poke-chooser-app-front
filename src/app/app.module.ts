@@ -1,3 +1,5 @@
+import { PokemonsReducer } from './pokemons/store/pokemon.reducer';
+import { PokemonService } from './pokemons/service/pokemon.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +11,8 @@ import { PokeFavoritesComponent } from './poke-favorites/poke-favorites.componen
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PokemonCatalogueComponent } from './pokemon-catalogue/pokemon-catalogue.component';
+import { PokemonCardListComponent } from './pokemon-card-list/pokemon-card-list.component';
+import { CallApiService } from './api/call-api.service';
 
 @NgModule({
   declarations: [
@@ -16,15 +20,18 @@ import { PokemonCatalogueComponent } from './pokemon-catalogue/pokemon-catalogue
     ProfileComponent,
     PokeFavoritesComponent,
     PokemonCardComponent,
-    PokemonCatalogueComponent
+    PokemonCatalogueComponent,
+    PokemonCardListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({
+      pokemons: PokemonsReducer
+    }),
     NgbModule
   ],
-  providers: [],
+  providers: [PokemonService, CallApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

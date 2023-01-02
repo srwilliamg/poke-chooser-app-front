@@ -1,3 +1,4 @@
+import { IPokemonModel } from './../pokemons/model/pokemon.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -8,4 +9,9 @@ import { Component, Input } from '@angular/core';
 export class PokemonCardComponent {
   @Input() photoUrl = "";
   @Input() name = "";
+  @Input() pokemon: IPokemonModel = {
+    photoUrl: "",
+    name: ""
+  };
+  @Input() clickBehavior: (args: any) => void = () => { console.info('clicked') }
 }

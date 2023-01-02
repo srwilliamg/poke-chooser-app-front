@@ -6,18 +6,11 @@
   background-color: #FF5757;
   padding: 1em;
   align-content: flex-start;
-}
-
-.pokemon-card-list {
-  display: flex;
-  flex-direction: row;
-  padding: 0px;
-  margin: 0px;
-  flex-wrap: wrap;
-  height: fit-content;
+  min-height: 20em;
 }
 
 .paginate-buttons {
+  margin-top: 2em;
   height: fit-content;
   width: 100%;
   display: flex;
