@@ -1,7 +1,7 @@
 import { IPokemonModel } from './../pokemons/model/pokemon.model';
 import { PokemonService } from './../pokemons/service/pokemon.service';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { map, take, toArray, of, from, switchMap, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-catalogue',
@@ -16,11 +16,10 @@ export class PokemonCatalogueComponent implements OnInit {
   ngOnInit(): void {
     this.pokemonService.getApiPokemons<{
       results: IPokemonModel[]
-    }>()
-      .pipe(map(({ results }) => results))
-      .pipe(map((result, index) => {
-        console.log("🚀 ~ file: pokemon-catalogue.component.ts:22 ~ PokemonCatalogueComponent ~ .pipe ~ result", result)
-
+    }>().subscribe((response) => {
+      const { results } = response;
+      from(results).pipe(mergeMap((x, index) => {
+        console.log("🚀 ~ file: pokemon-catalogue.component.ts:22 ~ PokemonCatalogueComponent ~ from ~ x", x)
         return this.pokemonService.getApiPokemonDescription<{
           id: number;
           name: string;
@@ -31,13 +30,20 @@ export class PokemonCatalogueComponent implements OnInit {
               }
             }
           }
-        }>("/" + index)
-      }))
-      .subscribe((response) => {
-        console.log("🚀 ~ file: pokemon-catalogue.component.ts:23 ~ PokemonCatalogueComponent ~ .subscribe ~ response", response)
-        // const { results } = response;
-        // this.pokemons = results;
-      })
+        }>("/" + (index + 1))
+      }), map((response) => {
+        console.log("🚀 ~ file: pokemon-catalogue.component.ts:34 ~ PokemonCatalogueComponent ~ .subscribe ~ response", response)
+        const { name, sprites: { other: { dream_world: { front_default } } } } = response;
+
+        return {
+          name,
+          photoUrl: front_default
+        } as IPokemonModel;
+      }), toArray()).subscribe(x => {
+        this.pokemons = x;
+      });
+
+    });
   }
 
   /**
