@@ -3,9 +3,23 @@ import { PokemonActions } from './../store/pokemon.actions';
 import { IPokemonModel } from './../model/pokemon.model';
 import { PokemonState } from './../store/pokemon.state';
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { map, mergeMap, Observable, switchMap, toArray } from 'rxjs';
 import { getState, selectPokemonFavorites } from '../store/pokemon.selector';
 import { Store } from '@ngrx/store';
+
+export interface IPokemonListItem { name: string; url: string; }
+export interface IPokemonListResponse { results: IPokemonListItem[] }
+export interface IPokemonDetail {
+  id: number;
+  name: string;
+  sprites: {
+    other: {
+      dream_world: {
+        front_default: string;
+      }
+    }
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +53,33 @@ export class PokemonService {
   /**
    * getApiPokemons
    */
-  public getApiPokemons<T>() {
-    return this.callApiService.callApi<T>({ method: "GET", url: "/" }, { params: { limit: 15 } });
+  public getApiPokemons() {
+    return this.callApiService.callApi<IPokemonListResponse>({ method: "GET", url: "/" }, { params: { limit: 15 } });
   }
 
-  public getApiPokemonDescription<T>(url: string) {
-    return this.callApiService.callApi<T>({ method: "GET", url }, {});
+  public getApiPokemonDescription(url: string) {
+    return this.callApiService.callApi<IPokemonDetail>({ method: "GET", url }, {});
   }
+
+  /**
+   * getPokemonsAndDetails
+   */
+  public getPokemonsAndDetails() {
+    return this.getApiPokemons().pipe(switchMap((r) => r.results), mergeMap(this.getPokemonDetails), map(this.getPokemonPhotoAndName), toArray());
+  }
+
+  private getPokemonPhotoAndName = (response: IPokemonDetail) => {
+    const { name, sprites: { other: { dream_world: { front_default } } } } = response;
+
+    return {
+      name,
+      photoUrl: front_default
+    } as IPokemonModel;
+  }
+
+  private getPokemonDetails = ({ url: pokemonUrl }: IPokemonListItem) => {
+    const [pokemonId] = pokemonUrl.split('/').filter((x) => Boolean(+x));
+    return this.getApiPokemonDescription(`/${pokemonId}`)
+  }
+
 }
