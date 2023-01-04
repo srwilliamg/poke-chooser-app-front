@@ -9,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonCatalogueComponent implements OnInit {
   public pokemons: IPokemonModel[] = []
-  constructor(private pokemonService: PokemonService) {
-  }
+
+  constructor(private pokemonService: PokemonService) { }
+
   ngOnInit(): void {
     this.pokemonService.getPokemonsAndDetails().subscribe(res => {
       this.pokemons = res

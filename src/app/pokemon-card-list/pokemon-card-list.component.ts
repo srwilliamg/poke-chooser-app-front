@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IPokemonModel } from './../pokemons/model/pokemon.model';
 import { Component, Input } from '@angular/core';
 
@@ -8,5 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class PokemonCardListComponent {
   @Input() pokemonsToShow: IPokemonModel[] | null = []
-  @Input() clickBehavior: (args: any) => void = () => { console.log('PokemonCardListComponent') }
+  @Input() clickBehavior: ((...args: any[]) => void) | null = null
 }

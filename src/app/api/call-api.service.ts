@@ -14,7 +14,7 @@ export class CallApiService {
 
   private getResponse(response: AxiosResponse) {
     const { data: responseData } = response;
-    console.info('Intercept response: ', responseData);
+    // console.info('Intercept response: ', responseData);
     return responseData;
   }
 
