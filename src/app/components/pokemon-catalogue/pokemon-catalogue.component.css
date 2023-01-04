@@ -1,12 +1,12 @@
 :host {
-  border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  background-color: #FF5757;
-  padding: 1em;
+  justify-content: space-around;
   align-content: flex-start;
-  min-height: 20em;
+  border-radius: 10px;
+  background-color: #ff5757;
+  padding: 1em;
 }
 
 .paginate-buttons {

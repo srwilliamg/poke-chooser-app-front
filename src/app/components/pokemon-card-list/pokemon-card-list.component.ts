@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IPokemonModel } from './../pokemons/model/pokemon.model';
+import { IPokemonModel } from './../../services/pokemons/model/pokemon.model';
 import { Component, Input } from '@angular/core';
 
 @Component({

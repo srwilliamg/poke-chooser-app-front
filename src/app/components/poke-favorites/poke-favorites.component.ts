@@ -1,4 +1,4 @@
-import { PokemonService } from './../pokemons/service/pokemon.service';
+import { PokemonService } from '../../services/pokemons/service/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,4 +1,4 @@
-import { CallApiService } from './../../api/call-api.service';
+import { CallApiService } from './../../../api/call-api.service';
 import { PokemonActions } from './../store/pokemon.actions';
 import { IPokemonModel } from './../model/pokemon.model';
 import { PokemonState } from './../store/pokemon.state';

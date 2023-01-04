@@ -1,0 +1,65 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: white;
+  border-radius: 10px;
+  width: 25em;
+  /* height: 15em; */
+  min-height: 8em;
+  min-width: 10em;
+  padding: 0.8em 0.5em 0.8em 1.5em;
+  margin: 1em 0.25em 0.25em 1em;
+  overflow: hidden;
+  height: min-content;
+}
+
+.fav-img-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  background-color: white;
+}
+
+.fav-img-container > img {
+  width: 8em;
+  height: 8em;
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.poke-card-name {
+  flex-grow: 2;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 15em;
+  min-width: 5em;
+  margin: 0.5em 0 0 0;
+  color: #fad02c;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.add-button {
+  flex-grow: 1;
+  min-width: 15%;
+  padding-right: 0.8em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.add-button > img {
+  width: 2em;
+  cursor: pointer;
+}

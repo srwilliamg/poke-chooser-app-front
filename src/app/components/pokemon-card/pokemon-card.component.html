@@ -1,0 +1,11 @@
+<div class="fav-img-container">
+  <img src="{{pokemon.photoUrl}}" alt="{{pokemon.name}}" />
+</div>
+<div class="options-container">
+  <div class="poke-card-name">
+    {{pokemon.name | titlecase}}
+  </div>
+  <div class="add-button" *ngIf="clickBehavior;" (click)="clickBehavior(pokemon)">
+    <img src="../../assets/add-button.svg" alt="">
+  </div>
+</div>
