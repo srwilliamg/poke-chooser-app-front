@@ -14,6 +14,8 @@ import { PokemonCatalogueComponent } from './components/pokemon-catalogue/pokemo
 import { PokemonCardListComponent } from './components/pokemon-card-list/pokemon-card-list.component';
 import { CallApiService } from './api/call-api.service';
 import { HomeComponent } from './screens/home/home.component';
+import { EffectsModule } from '@ngrx/effects';
+import { PokemonEffects } from './services/pokemons/store/pokemon.effects';
 
 @NgModule({
   declarations: [
@@ -23,17 +25,18 @@ import { HomeComponent } from './screens/home/home.component';
     PokemonCardComponent,
     PokemonCatalogueComponent,
     PokemonCardListComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({
-      pokemons: PokemonsReducer
+      pokemons: PokemonsReducer,
     }),
-    NgbModule
+    NgbModule,
+    EffectsModule.forRoot([PokemonEffects]),
   ],
   providers: [PokemonService, CallApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

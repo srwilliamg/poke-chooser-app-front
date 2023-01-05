@@ -1,4 +1,7 @@
-<app-pokemon-card-list [pokemonsToShow]="pokemons" [clickBehavior]="addPokemon()"></app-pokemon-card-list>
+<app-pokemon-card-list
+  [pokemonsToShow]="pokemons$ | async"
+  [clickBehavior]="addPokemon()"
+></app-pokemon-card-list>
 <div class="paginate-buttons">
   <button>arrow</button>
   <button>arrow</button>

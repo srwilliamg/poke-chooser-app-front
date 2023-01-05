@@ -9,3 +9,8 @@ export const selectPokemonFavorites = createSelector(
   getState,
   (state: PokemonState) => state.favorites
 );
+
+export const selectPokemonList = createSelector(
+  getState,
+  (state: PokemonState) => state.pokemonList
+);

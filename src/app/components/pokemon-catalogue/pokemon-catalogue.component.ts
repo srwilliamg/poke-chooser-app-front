@@ -5,17 +5,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-pokemon-catalogue',
   templateUrl: './pokemon-catalogue.component.html',
-  styleUrls: ['./pokemon-catalogue.component.css']
+  styleUrls: ['./pokemon-catalogue.component.css'],
 })
 export class PokemonCatalogueComponent implements OnInit {
-  public pokemons: IPokemonModel[] = []
+  public pokemons$ = this.pokemonService.getPokemonList();
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    this.pokemonService.getPokemonsAndDetails().subscribe(res => {
-      this.pokemons = res
-    })
+    this.pokemonService.loadPokemonList();
   }
 
   /**
@@ -23,7 +21,7 @@ export class PokemonCatalogueComponent implements OnInit {
    */
   public addPokemon() {
     return (pokemon: IPokemonModel) => {
-      this.pokemonService.addFavoritePokemon(pokemon)
-    }
+      this.pokemonService.addFavoritePokemon(pokemon);
+    };
   }
 }

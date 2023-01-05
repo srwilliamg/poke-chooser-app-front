@@ -4,16 +4,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-poke-favorites',
   templateUrl: './poke-favorites.component.html',
-  styleUrls: ['./poke-favorites.component.css']
+  styleUrls: ['./poke-favorites.component.css'],
 })
 export class PokeFavoritesComponent implements OnInit {
-  public favoritePokemons$
+  public favoritePokemons$;
 
   constructor(private pokemonService: PokemonService) {
     this.favoritePokemons$ = pokemonService.getFavoritePokemons();
   }
 
   ngOnInit(): void {
-    console.info('created favorites')
+    console.info('created favorites');
   }
 }
